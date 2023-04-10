@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Calculator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="flex justify-center items-center mt-10">
+        <div class="bg-gray-800 rounded-md p-6 ">
+            <div class="border bg-red-800 border-gray-400 text-white text-lg tracking-wider p-6 rounded-md mb-4" id="input">
+            </div>
+            <div class="grid grid-cols-4 gap-2">
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >7</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >8</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >9</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                    >AC</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >4</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >5</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >6</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >+</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >1</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >2</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >3</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >-</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >0</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md w-28"
+                    id="=">=</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >÷</button>
+                <button
+                    class="text-white bg-red-800 text-xl button font-semibold border border-gray-400 hover:bg-gray-700 p-3 rounded-md"
+                   >*</button>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        // function showValue(val)
+        //  {
+
+        //    if(val == '+'){
+        //     document.getElementById("inp").value += val
+        //    }
+        //    else{
+        //     document.getElementById("inp").value += val
+        //    }
+        // }
+        // function clearScreen(){
+        //     document.getElementById("inp").value = "";
+        // }
+        // function evaluate(){
+        //    var val = document.getElementById("inp").value;
+        //     var res = eval(val)
+        //    document.getElementById("inp") = res;
+        // }
+
+  
+
+        let display = document.getElementById('display');
+        let buttons = Array.from(document.getElementsByClassName('button'));
+        buttons.map( button => {
+        button.addEventListener('click', (e) => {
+        switch(e.target.innerText){
+            case 'AC':
+                display.innerText = '';
+                break;
+            case '=':
+                try{
+                    display.innerText = eval(display.innerText);
+                } catch {
+                    display.innerText = "Error"
+                }
+                break;
+            default:
+                display.innerText += e.target.innerText;
+        }
+    });
+});
+
+    </script>
+</body>
+
+</html>

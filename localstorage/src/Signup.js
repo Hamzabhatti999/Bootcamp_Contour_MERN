@@ -1,40 +1,38 @@
 import React, { useState, useEffect } from "react";
 
 function Signup() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    address: "",
-  });
+const [formData,setFormData] = useState({
+   name: "",
+   email: "",
+   address: "",
+})
+const [list,setList] = useState([])
 
-  function handleNameChange(e) {
-    setFormData({ ...formData, name: e.target.value });
-  }
+useEffect(()=>{
+  localStorage.setItem("formData",JSON.stringify(list))
+},[list])
 
-  function handleEmailChange(e) {
-    setFormData({ ...formData, email: e.target.value });
-  }
-  function handleAddressChange(e) {
-    setFormData({ ...formData, address: e.target.value });
-  }
-  let temp = [formData];
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("***temp****", temp);
-    if (temp.length !== 0) {
-      temp.push(localStorage.setItem("form", JSON.stringify(temp)));
-    } else {
-      localStorage.setItem("form", JSON.stringify(temp));
-    }
-  };
-  useEffect(() => {
-    const savedData = localStorage.getItem("formData");
-
-    if (savedData) {
-      setFormData(JSON.parse(savedData));
+ useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("formData"));
+    
+    if (data) {
+      setList(data);
     }
   }, []);
-
+  console.log("====",list)
+const handleInputChange= (event) =>{
+const {name,value} = event.target;
+setFormData((prev)=>({...prev,[name]: value}))
+}
+const handleSubmit = (event)=>{
+  event.preventDefault()
+  setList((prevList) => ([...prevList,formData]))
+  setFormData({name: "", email:"",address:""})
+}
+  const handleDelete = (index) => {
+    const newList = list.filter((_, i) => i !== index);
+    setList(newList);
+  };
   return (
     <>
       <div className="flex justify-center gap-10 my-20">
@@ -46,30 +44,27 @@ function Signup() {
             <input
               type="text"
               className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="fullname"
-              onChange={handleNameChange}
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
               placeholder="Full Name"
             />
             <input
               type="email"
               className="block border border-grey-light w-full p-3 rounded mb-4"
               name="email"
-              onChange={handleEmailChange}
+              value={formData.email}
+              onChange={handleInputChange}
               placeholder="Email Address"
             />
             <input
               type="text"
               className="block border border-grey-light w-full p-3 rounded mb-4"
               name="address"
-              onChange={handleAddressChange}
+              value={formData.address}
+              onChange={handleInputChange}
               placeholder="Enter Address"
             />
-            {/* <input
-              type="password"
-              className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="confirm_password"
-              placeholder="Confirm Password"
-            /> */}
             <button
               type="submit"
               className="w-full text-center py-3 rounded bg-green text-white bg-cyan-800 hover:bg-cyan-600 font-semibold "
@@ -97,17 +92,14 @@ function Signup() {
                 </th>
               </tr>
             </thead>
-            <tbody className="text-left text-md">
-              <tr className=" border-b-2 text-slate-50">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium whitespace-nowrap"
-                >
-                  {formData.name}
-                </th>
-                <td className="px-6 py-4 font-medium">{formData.email}</td>
-                <td className="px-6 py-4 font-medium">{formData.address}</td>
-                <td className="px-6 py-4 flex gap-4">
+          
+             <tbody className="text-left text-md">
+           {list.map((contact, index) => (
+             <tr className=" border-b-2 text-slate-50" key={index}>
+               <td className="px-6 py-4 font-medium">{contact.name}</td>
+               <td className="px-6 py-4 font-medium">{contact.email}</td>
+               <td className="px-6 py-4 font-medium">{contact.address}</td>
+               <td className="px-6 py-4 flex gap-4">
                   <button className="font-medium bg-blue-600 rounded-lg  text-white p-1 hover:outline hover:outline-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +116,8 @@ function Signup() {
                       />
                     </svg>
                   </button>
-                  <button className="font-medium bg-red-600  rounded-lg text-white  p-1 hover:outline hover:outline-1">
+                  <button className="font-medium bg-red-600  rounded-lg text-white  p-1 hover:outline hover:outline-1"
+                  onClick={()=>handleDelete(index)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -141,13 +134,16 @@ function Signup() {
                     </svg>
                   </button>
                 </td>
-              </tr>
-            </tbody>
+             </tr>
+           ))}
+         </tbody>
           </table>
         </div>
       </div>
     </>
   );
 }
+
+
 
 export default Signup;

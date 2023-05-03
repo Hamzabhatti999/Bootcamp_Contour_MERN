@@ -33,6 +33,16 @@ const handleSubmit = (event)=>{
     const newList = list.filter((_, i) => i !== index);
     setList(newList);
   };
+  const handleEdit = (index) => {
+  const contactToEdit = list[index];
+  setFormData(contactToEdit);
+  const newList = [...list];
+  newList.splice(index, 1);
+  setList(newList);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  const nameInput = document.getElementsByName("name")[0];
+  nameInput.focus();
+};
   return (
     <>
       <div className="flex justify-center gap-10 my-20">
@@ -100,7 +110,8 @@ const handleSubmit = (event)=>{
                <td className="px-6 py-4 font-medium">{contact.email}</td>
                <td className="px-6 py-4 font-medium">{contact.address}</td>
                <td className="px-6 py-4 flex gap-4">
-                  <button className="font-medium bg-blue-600 rounded-lg  text-white p-1 hover:outline hover:outline-1">
+                  <button className="font-medium bg-blue-600 rounded-lg  text-white p-1 hover:outline hover:outline-1"
+                  onClick={()=>handleEdit(index)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"

@@ -1,0 +1,66 @@
+.App {
+  background-color: darkslategrey;
+  display: flex;
+  padding: 100px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.add {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+
+  color: whitesmoke;
+  text-decoration: underline;
+}
+
+.icon {
+  font-size: larger;
+  font-weight: bold;
+  color: burlywood;
+  margin: 20px;
+}
+
+.add-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  margin: 10px;
+}
+
+input {
+  width: 50px;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid;
+  border-color: crimson;
+  border-radius: 10px;
+}
+
+.btn-action {
+  width: 190px;
+  background-color: green;
+  color: wheat;
+  padding: 10px;
+  border-color: crimson;
+  border-radius: 5px;
+  margin-left: 20px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.data {
+  background-color: darkslategrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

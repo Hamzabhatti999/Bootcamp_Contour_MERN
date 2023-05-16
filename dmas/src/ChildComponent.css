@@ -1,0 +1,36 @@
+/* ChildComponent.css */
+.dmas {
+    background-color: darkolivegreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    color: whitesmoke;
+}
+
+.operation-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.input-field {
+    width: 100px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.operation-button {
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border: #45a049;
+    border-radius: 5px;
+}
+
+.operation-button:hover {
+    background-color: #45a049;
+}
